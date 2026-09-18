@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct ListNode {
+     int val;
+     ListNode *next;
+     ListNode(int x) : val(x), next(NULL) {}
+ };
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head==nullptr || head->next==nullptr){
+            return false;
+        }
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while( fast != nullptr && fast->next != nullptr ){
+            slow = slow->next; // 1
+            fast = fast->next->next; // 2
+            if(slow == fast) return true;
+        }
+        return false;
+    }
+};

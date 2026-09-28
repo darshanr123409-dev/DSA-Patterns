@@ -15,6 +15,7 @@ public:
                     return false;
                 }
 
+                
                 char top = st.top();
                 st.pop();
 

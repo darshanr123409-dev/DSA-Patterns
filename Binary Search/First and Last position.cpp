@@ -1,49 +1,51 @@
 #include<bits/stdc++.h>
 using namespace std;
+// There are 2 best solution
+// first mathod
+int Lower_bond(vector<int> &arr,int n ,int target){
+    int ans=n;
+    int low=0;   //   Tc= O(n log n)
+    int high=n-1;  //  Sc =O(1)
+    while(low<=high){
+        int mid=(low+high)/2;
+        if(arr[mid]>=target){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
 
-// int Lower_bond(vector<int> &arr,int n ,int target){
-//     int ans=n;
-//     int low=0;   //   Tc= O(n log n)
-//     int high=n-1;  //  Sc =O(1)
-//     while(low<=high){
-//         int mid=(low+high)/2;
-//         if(arr[mid]>=target){
-//             ans=mid;
-//             high=mid-1;
-//         }
-//         else{
-//             low=mid+1;
-//         }
-//     }
-//     return ans;
-// }
+int Upper_bond(vector<int> &arr,int n,int target){
+    int ans=n;
+    int low=0;
+    int high=n-1;
+    while(low<=high){
+        int mid=(low+high)/2;
 
-// int Upper_bond(vector<int> &arr,int n,int target){
-//     int ans=n;
-//     int low=0;
-//     int high=n-1;
-//     while(low<=high){
-//         int mid=(low+high)/2;
-
-//         if(arr[mid]>target){
-//             ans=mid;
-//             high=mid-1;
-//         }
-//         else{
-//             low=mid+1;
-//         }
-//     }
-//     return ans;
-// }
-// pair<int,int> Get_Fisrt_and_Last_occ(vector<int> &arr,int n,int x){
+        if(arr[mid]>target){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+pair<int,int> Get_Fisrt_and_Last_occ(vector<int> &arr,int n,int x){
         
-//         int lb=Lower_bond(arr,n,x);
-//         if((lb==n)|| (arr[lb]!=x)){
-//             return {-1,-1};
-//         }
-//         return {lb, Upper_bond(arr,n,x)-1};
-// }
+        int lb=Lower_bond(arr,n,x);
+        if((lb==n)|| (arr[lb]!=x)){
+            return {-1,-1};
+        }
+        return {lb, Upper_bond(arr,n,x)-1};
+}
 
+//  2nd method
 int First_Occurence(vector<int> &arr,int n,int target){
     int first=-1;
     int low=0;

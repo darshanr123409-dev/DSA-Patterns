@@ -1,22 +1,28 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-
-class Solution {
+class Solution
+{
 public:
-    bool find_possible(vector<int>& book, int n,
-                       long long limit, int stu) {
+    bool find_possible(vector<int> &book, int n,
+                       long long limit, int stu)
+    {
         long long page = 0;
         int k = 1;
 
-        for (int i = 0; i < n; i++) {
-            if (page + book[i] <= limit) {
+        for (int i = 0; i < n; i++)
+        {
+            if (page + book[i] <= limit)
+            {
                 page += book[i];
-            } else {
+            }
+            else
+            {
                 k++;
                 page = book[i];
 
-                if (k > stu) {
+                if (k > stu)
+                {
                     return false;
                 }
             }
@@ -24,29 +30,36 @@ public:
         return true;
     }
 
-    int findPages(vector<int>& arr, int k) {
+    int findPages(vector<int> &arr, int k)
+    {
         int n = arr.size();
 
-        if (n < k) {
+        if (n < k)
+        {
             return -1;
         }
 
         long long low = 0, high = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
+        {
             low = max(low, (long long)arr[i]);
             high += arr[i];
         }
 
         long long res = -1;
 
-        while (low <= high) {
+        while (low <= high)
+        {
             long long mid = low + (high - low) / 2;
 
-            if (find_possible(arr, n, mid, k)) {
+            if (find_possible(arr, n, mid, k))
+            {
                 res = mid;
                 high = mid - 1;
-            } else {
+            }
+            else
+            {
                 low = mid + 1;
             }
         }

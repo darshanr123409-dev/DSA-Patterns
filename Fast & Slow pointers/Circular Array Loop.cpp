@@ -10,6 +10,8 @@ public:
         return ((i + nums[i]) % n + n) % n;
     }
 
+
+    
     bool circularArrayLoop(vector<int>& nums) {
 
         int n = nums.size();

@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 class Solution {
 public:
     int find_cnt(vector<vector<int>>& arr,int n, int m, int mid){
@@ -18,6 +19,7 @@ public:
         }
         return cnt;
     }
+    
     int kthSmallest(vector<vector<int>>& matrix, int k) {
         int n = matrix.size();
         int m = matrix[0].size();

@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 class Solution {
 public:
     struct Compare {
@@ -41,6 +40,7 @@ public:
             ans.push_back(pq.top().second);
             pq.pop();
         }
+
 
         reverse(ans.begin(), ans.end());
         return ans;

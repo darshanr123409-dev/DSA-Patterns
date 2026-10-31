@@ -1,40 +1,49 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution {
-private:
-    void combi(int index, vector<int>& candidates, int target,
-               vector<int>& current, vector<vector<int>>& ans) {
 
-        // Base case
-        if (index == candidates.size()) {
-            if (target == 0) {
-                ans.push_back(current);
+class Solution {
+public:
+    void sum(vector<int>& arr, int n, int i,
+             vector<int>& dairy, int s,
+             vector<vector<int>>& res, int target) {
+
+        if(i == n) {
+            if(s == target) {
+                res.push_back(dairy);
             }
             return;
         }
 
-        // Pick the current element
-        if (candidates[index] <= target) {
-            current.push_back(candidates[index]);
+        // Nahi lena hai
+        sum(arr, n, i + 1, dairy, s, res, target);
 
-            // Same index because we can reuse the same element
-            combi(index, candidates, target - candidates[index], current, ans);
+        // Lena hai
+        if(arr[i] + s <= target) {
 
-            current.pop_back(); // backtrack
+            dairy.push_back(arr[i]);
+            s += arr[i];
+
+            sum(arr, n, i, dairy, s, res, target);
+
+            dairy.pop_back();
+            s -= arr[i];
         }
-
-        // Don't pick the current element
-        combi(index + 1, candidates, target, current, ans);
     }
 
-public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        vector<vector<int>> ans;
-        vector<int> current;
+    vector<vector<int>> combinationSum(vector<int>& candidates,
+                                       int target) {
 
-        combi(0, candidates, target, current, ans);
+        int i = 0;
+        int n = candidates.size();
 
-        return ans;
+        vector<int> dairy;
+        vector<vector<int>> res;
+
+        int s = 0;
+
+        sum(candidates, n, i, dairy, s, res, target);
+
+        return res;
     }
 };

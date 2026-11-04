@@ -12,30 +12,34 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
+class Solution
+{
 public:
-    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+    vector<vector<int>> zigzagLevelOrder(TreeNode *root)
+    {
 
         vector<vector<int>> res;
 
         if (root == nullptr)
             return res;
 
-        queue<TreeNode*> q;
+        queue<TreeNode *> q;
         q.push(root);
 
         int count = 0;
 
-        while (!q.empty()) {
+        while (!q.empty())
+        {
 
             count++;
 
             int lvlsize = q.size();
             vector<int> temp;
 
-            while (lvlsize--) {
+            while (lvlsize--)
+            {
 
-                TreeNode* t = q.front();
+                TreeNode *t = q.front();
                 q.pop();
 
                 temp.push_back(t->val);
@@ -48,7 +52,8 @@ public:
             }
 
             // Even level: reverse direction
-            if (count % 2 == 0) {
+            if (count % 2 == 0)
+            {
                 reverse(temp.begin(), temp.end());
             }
 

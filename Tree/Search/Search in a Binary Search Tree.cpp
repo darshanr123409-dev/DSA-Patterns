@@ -12,4 +12,20 @@ using namespace std;
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  };
 
- 
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        // Base case: root is null or we found the value
+        if (root == nullptr || root->val == val) {
+            return root;
+        }
+        
+        // If the target value is smaller, search in the left subtree
+        if (val < root->val) {
+            return searchBST(root->left, val);
+        }
+        
+        // Otherwise, search in the right subtree
+        return searchBST(root->right, val);
+    }
+};

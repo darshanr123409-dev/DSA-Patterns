@@ -11,3 +11,19 @@ struct TreeNode
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
+ 
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if (!root) return false;
+
+        targetSum -= root->val;
+
+        // Must reach a leaf
+        if (!root->left && !root->right)
+            return targetSum == 0;
+
+        return hasPathSum(root->left, targetSum) ||
+               hasPathSum(root->right, targetSum);
+    }
+};
